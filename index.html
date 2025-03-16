@@ -229,8 +229,6 @@
             const amountInput = loanContainer.querySelector('.loanAmount');
             const totalInterestOutput = loanContainer.querySelector('.totalInterest');
             const monthsRemainingOutput = loanContainer.querySelector('.monthsRemaining');
-            const remainingBalanceOutput = loanContainer.querySelector('.remainingBalance');
-            const remainingPrincipalOutput = loanContainer.querySelector('.remainingPrincipal');
             const totalPaymentOutput = loanContainer.querySelector('.totalPayment'); // Correctly select totalPaymentOutput
 
             const annualInterestRate = parseFloat(interestRateInput.value) / 100;
@@ -281,9 +279,7 @@
 
             totalInterestOutput.textContent = isFinite(totalInterestPaid) ? totalInterestPaid.toFixed(2) : "-";
             monthsRemainingOutput.textContent = isFinite(monthsRemaining) ? monthsRemaining : "-";
-            remainingBalanceOutput.textContent = isFinite(remainingBalance) ? remainingBalance.toFixed(2) : "0.00";
-            remainingPrincipalOutput.textContent = remainingPrincipal.toFixed(2);
-            
+
             const totalPayment = loanAmount + totalInterestPaid; // Calculate total payment
             if (totalPaymentOutput) {
                 totalPaymentOutput.textContent = isFinite(totalPayment) ? totalPayment.toFixed(2) : "0.00"; // Update total payment output
