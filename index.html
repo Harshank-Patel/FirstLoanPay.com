@@ -217,11 +217,6 @@
         </div>
 
         <button id="addLoanBtn" class="btn btn-primary w-100">Add New Loan</button>
-
-        <div class="summary">
-            Total Interest Paid for All Loans: $<span id="totalInterestAllLoans">0.00</span><br>
-            Total Amount Borrowed for All Loans: $<span id="totalAmountAllLoans">0.00</span>
-        </div>
     </div>
 
     <script>
@@ -300,11 +295,13 @@
         function updateTotals() {
             let totalInterestAllLoans = 0;
             let totalAmountAllLoans = 0;
-            document.querySelectorAll('.totalInterest').forEach(output => {
-                totalInterestAllLoans += parseFloat(output.textContent) || 0;
-            });
-            document.querySelectorAll('.loanAmount').forEach(input => {
-                totalAmountAllLoans += parseFloat(input.value) || 0;
+            document.querySelectorAll('.loan-container').forEach(container => {
+                const interestElem = container.querySelector('.totalInterest');
+                const amountElem = container.querySelector('.loanAmount');
+                const interest = interestElem ? (parseFloat(interestElem.textContent) || 0) : 0;
+                const amount = amountElem ? (parseFloat(amountElem.value) || 0) : 0;
+                totalInterestAllLoans += interest;
+                totalAmountAllLoans += amount;
             });
             document.getElementById('totalInterestAllLoans').textContent = totalInterestAllLoans.toFixed(2);
             document.getElementById('totalAmountAllLoans').textContent = totalAmountAllLoans.toFixed(2);
