@@ -365,12 +365,12 @@
             });
 
             paymentInput.addEventListener('input', () => {
-                slider.value = paymentInput.value;
+                slider.value = Math.min(paymentInput.value, slider.max);
                 calculateInterest(loanContainer);
             });
 
             amountInput.addEventListener('input', () => {
-                slider.max = amountInput.value;
+                slider.max = amountInput.value ? parseFloat(amountInput.value) : 100;
                 calculateInterest(loanContainer);
             });
 
