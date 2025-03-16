@@ -205,8 +205,16 @@
                 font-size: 0.9rem;
                 padding: 10px;
             }
-        }
-    </style>
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        margin-bottom: 0; /* Ensure no bottom space */
+        padding-bottom: 0; /* Remove extra padding */
+    }
+</style>
 </head>
 <body>
     <div class="container">
@@ -385,5 +393,8 @@
 
         addLoan();
     </script>
+    <footer class="bg-light text-center text-dark py-3 mt-5">
+        <p class="mb-0">Made with ❤️ in Austin Texas!</p>
+    </footer>
 </body>
 </html>
