@@ -236,6 +236,7 @@
             const monthsRemainingOutput = loanContainer.querySelector('.monthsRemaining');
             const remainingBalanceOutput = loanContainer.querySelector('.remainingBalance');
             const remainingPrincipalOutput = loanContainer.querySelector('.remainingPrincipal');
+            const totalPaymentOutput = loanContainer.querySelector('.totalPayment'); // Correctly select totalPaymentOutput
 
             const annualInterestRate = parseFloat(interestRateInput.value) / 100;
             const loanAmount = parseFloat(amountInput.value);
@@ -270,6 +271,10 @@
                 balance -= principalPayment;
                 totalInterestPaid += interestForMonth;
                 monthsRemaining++;
+
+                // Update totalPaymentOutput inside the loop
+                const totalPayment = loanAmount + totalInterestPaid;
+                totalPaymentOutput.textContent = isFinite(totalPayment) ? totalPayment.toFixed(2) : "0.00";
             }
 
             if (balance <= 0) {
@@ -283,6 +288,11 @@
             monthsRemainingOutput.textContent = isFinite(monthsRemaining) ? monthsRemaining : "-";
             remainingBalanceOutput.textContent = isFinite(remainingBalance) ? remainingBalance.toFixed(2) : "0.00";
             remainingPrincipalOutput.textContent = remainingPrincipal.toFixed(2);
+            
+            const totalPayment = loanAmount + totalInterestPaid; // Calculate total payment
+            if (totalPaymentOutput) {
+                totalPaymentOutput.textContent = isFinite(totalPayment) ? totalPayment.toFixed(2) : "0.00"; // Update total payment output
+            }
 
             updateTotals();
         }
@@ -337,9 +347,8 @@
                 <button class="close-btn">X</button>
                 <h6>Loan Summary</h6>
                 <p>Total Interest Paid: $<span class="totalInterest">0.00</span></p>
-                <p>Months Remaining: <span class="monthsRemaining">0</span></p>
-                <p>Remaining Principal: $<span class="remainingPrincipal">0.00</span></p>
-                <p>Remaining Balance: $<span class="remainingBalance">0.00</span></p>
+                <p>Months of Payment: <span class="monthsRemaining">0</span> months</p>
+                <p>Total Payments (Interest + Principal): $<span class="totalPayment">0.00</span></p>
             `;
 
             loanContainer.appendChild(loanCard);
