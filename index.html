@@ -359,6 +359,10 @@
             const paymentInput = loanContainer.querySelector('.paymentInput');
             const amountInput = loanContainer.querySelector('.loanAmount');
 
+            slider.max = amountInput.value ? parseFloat(amountInput.value) : 100;
+            slider.value = slider.max; // Ensure it moves to the right at max value
+            paymentInput.value = slider.value;
+
             slider.addEventListener('input', () => {
                 paymentInput.value = slider.value;
                 calculateInterest(loanContainer);
